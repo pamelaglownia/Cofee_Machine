@@ -1,5 +1,7 @@
 package pl.glownia.pamela;
 
+import java.util.Scanner;
+
 public class MainMenu {
     public static void main(String[] args) {
         System.out.println("Starting to make a coffee");
@@ -9,5 +11,16 @@ public class MainMenu {
         System.out.println("Pouring coffee into the cup");
         System.out.println("Pouring some milk into the cup");
         System.out.println("Coffee is ready!");
+
+        Scanner scan = new Scanner(System.in);
+        System.out.print("How many cups of coffee you will need: \n>");
+        int cups = scan.nextInt();
+        int water = cups * 200;
+        int milk = cups * 50;
+        int coffeeBeans = cups * 15;
+        System.out.println("For " + cups + " cups of coffee you will need:");
+        System.out.println(water + " ml of water");
+        System.out.println(milk + " ml of milk");
+        System.out.println(coffeeBeans + " g of coffee beans");
     }
 }
