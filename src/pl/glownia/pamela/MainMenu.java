@@ -26,28 +26,38 @@ public class MainMenu {
     }
 
     static void makeDecision(Scanner scan) {
-        System.out.println("Write action(buy, fill, take): ");
-        String decision = scan.next();
-        if (decision.equalsIgnoreCase("buy")) {
-            System.out.println("What do you want to buy? 1- espresso, 2- latte, 3-cappuccino");
-            int coffeeNumber = scan.nextInt();
-            if (coffeeNumber == 1) {
-                makeEspresso();
-            } else if (coffeeNumber == 2) {
-                makeLatte();
-            } else if (coffeeNumber == 3) {
-                makeCappuccino();
-
-            } else {
-                System.out.println("Wrong number.");
+        String decision = "";
+        do {
+            System.out.println("\nWrite action(buy, fill, take, remaining, exit): ");
+            decision = scan.next();
+            while (!(decision.equalsIgnoreCase("buy") || decision.equalsIgnoreCase("fill") || decision.equalsIgnoreCase("take")
+                    || decision.equalsIgnoreCase("remaining") || decision.equalsIgnoreCase("exit"))) {
+                System.out.println("Incorrect value. Try again:");
+                decision = scan.next();
             }
-        } else if (decision.equalsIgnoreCase("fill")) {
-            fillCoffeeMachine(scan);
-        } else if (decision.equalsIgnoreCase("take")) {
-            takeMoney();
-        } else {
-            throw new IllegalArgumentException("Incorrect value.");
-        }
+            if (decision.equalsIgnoreCase("buy")) {
+                System.out.println("Do you want to buy coffee: 1- espresso, 2- latte, 3-cappuccino or 4-go back to the main menu?");
+                int coffeeNumber = scan.nextInt();
+                if (coffeeNumber == 1) {
+                    makeEspresso();
+                } else if (coffeeNumber == 2) {
+                    makeLatte();
+                } else if (coffeeNumber == 3) {
+                    makeCappuccino();
+                } else if (coffeeNumber == 4) {
+                    makeDecision(scan);
+                } else {
+                    System.out.println("Wrong number.");
+                }
+            } else if (decision.equalsIgnoreCase("fill")) {
+                fillCoffeeMachine(scan);
+            } else if (decision.equalsIgnoreCase("take")) {
+                takeMoney();
+            } else if (decision.equalsIgnoreCase("remaining")) {
+                printCoffeeMachineState();
+            }
+        } while (!(decision.equalsIgnoreCase("exit")));
+        System.out.println("Thank you! Bye!");
     }
 
     static void makeEspresso() {
