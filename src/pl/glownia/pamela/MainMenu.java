@@ -26,12 +26,11 @@ public class MainMenu {
     }
 
     static void makeDecision(Scanner scan) {
-        String decision = "";
+        String decision;
         do {
             System.out.println("\nWrite action(buy, fill, take, remaining, exit): ");
             decision = scan.next();
-            while (!(decision.equalsIgnoreCase("buy") || decision.equalsIgnoreCase("fill") || decision.equalsIgnoreCase("take")
-                    || decision.equalsIgnoreCase("remaining") || decision.equalsIgnoreCase("exit"))) {
+            while (!(decision.equalsIgnoreCase("buy") || decision.equalsIgnoreCase("fill") || decision.equalsIgnoreCase("take") || decision.equalsIgnoreCase("remaining") || decision.equalsIgnoreCase("exit"))) {
                 System.out.println("Incorrect value. Try again:");
                 decision = scan.next();
             }
@@ -45,7 +44,6 @@ public class MainMenu {
                 } else if (coffeeNumber == 3) {
                     makeCappuccino();
                 } else if (coffeeNumber == 4) {
-                    makeDecision(scan);
                 } else {
                     System.out.println("Wrong number.");
                 }
@@ -61,29 +59,63 @@ public class MainMenu {
     }
 
     static void makeEspresso() {
-        water -= 250;
-        coffeeBeans -= 16;
-        money += 4;
-        cups -= 1;
-        printCoffeeMachineState();
+        int rWater = 250;
+        int rMilk = 0;
+        int rCoffeeBeans = 16;
+        int rCups = 1;
+        if (verifyRequiredIngredients(rWater, rMilk, rCoffeeBeans, rCups)) {
+            water -= rWater;
+            coffeeBeans -= rCoffeeBeans;
+            money += 4;
+            cups -= rCups;
+        }
     }
 
     static void makeLatte() {
-        water -= 350;
-        milk -= 75;
-        coffeeBeans -= 20;
-        money += 7;
-        cups -= 1;
-        printCoffeeMachineState();
+        int rWater = 350;
+        int rMilk = 75;
+        int rCoffeeBeans = 20;
+        int rCups = 1;
+        if (verifyRequiredIngredients(rWater, rMilk, rCoffeeBeans, rCups)) {
+            water -= rWater;
+            milk -= rMilk;
+            coffeeBeans -= rCoffeeBeans;
+            money += 7;
+            cups -= rCups;
+        }
     }
 
     static void makeCappuccino() {
-        water -= 200;
-        milk -= 100;
-        coffeeBeans -= 12;
-        money += 6;
-        cups -= 1;
-        printCoffeeMachineState();
+        int rWater = 200;
+        int rMilk = 100;
+        int rCoffeeBeans = 12;
+        int rCups = 1;
+        if (verifyRequiredIngredients(rWater, rMilk, rCoffeeBeans, rCups)) {
+            water -= rWater;
+            milk -= rMilk;
+            coffeeBeans -= rCoffeeBeans;
+            money += 6;
+            cups -= rCups;
+        }
+    }
+
+    static boolean verifyRequiredIngredients(int rWater, int rMilk, int rCoffeeBeans, int rCups) {
+        if (water < rWater) {
+            System.out.println("Sorry, not enough water!");
+            return false;
+        } else if (milk < rMilk) {
+            System.out.println("Sorry, not enough milk!");
+            return false;
+        } else if (coffeeBeans < rCoffeeBeans) {
+            System.out.println("Sorry, not enough coffee beans!");
+            return false;
+        } else if (cups < rCups) {
+            System.out.println("Sorry, not enough cups!");
+            return false;
+        } else {
+            System.out.println("I have enough resources, making you a coffee!");
+            return true;
+        }
     }
 
     static void fillCoffeeMachine(Scanner scan) {
@@ -99,12 +131,10 @@ public class MainMenu {
         System.out.println("Write how many disposable cups of coffee you want to add: ");
         int addDisposableCups = scan.nextInt();
         cups += addDisposableCups;
-        printCoffeeMachineState();
     }
 
     static void takeMoney() {
         System.out.println("I take you $" + money + ".");
         money = 0;
-        printCoffeeMachineState();
     }
 }
