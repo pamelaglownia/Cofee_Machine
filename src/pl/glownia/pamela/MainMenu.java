@@ -14,16 +14,6 @@ public class MainMenu {
 
         printCoffeeMachineState();
         makeDecision(scan);
-
-        System.out.println();
-        System.out.println("**********");
-        System.out.println("Starting to make a coffee");
-        System.out.println("Grinding coffee beans");
-        System.out.println("Boiling water");
-        System.out.println("Mixing boiled water with crushed coffee beans");
-        System.out.println("Pouring coffee into the cup");
-        System.out.println("Pouring some milk into the cup");
-        System.out.println("Coffee is ready!");
     }
 
     static void printCoffeeMachineState() {
@@ -52,9 +42,9 @@ public class MainMenu {
                 System.out.println("Wrong number.");
             }
         } else if (decision.equalsIgnoreCase("fill")) {
-            System.out.println("Under construction...");
+            fillCoffeeMachine(scan);
         } else if (decision.equalsIgnoreCase("take")) {
-            System.out.println("Under construction...");
+            takeMoney();
         } else {
             throw new IllegalArgumentException("Incorrect value.");
         }
@@ -83,6 +73,28 @@ public class MainMenu {
         coffeeBeans -= 12;
         money += 6;
         cups -= 1;
+        printCoffeeMachineState();
+    }
+
+    static void fillCoffeeMachine(Scanner scan) {
+        System.out.println("Write how many ml of water you want to add: ");
+        int addWater = scan.nextInt();
+        water += addWater;
+        System.out.println("Write how many ml of milk you want to add: ");
+        int addMilk = scan.nextInt();
+        milk += addMilk;
+        System.out.println("Write how many grams of coffee beans you want to add: ");
+        int addCoffeeBeans = scan.nextInt();
+        coffeeBeans += addCoffeeBeans;
+        System.out.println("Write how many disposable cups of coffee you want to add: ");
+        int addDisposableCups = scan.nextInt();
+        cups += addDisposableCups;
+        printCoffeeMachineState();
+    }
+
+    static void takeMoney() {
+        System.out.println("I take you $" + money + ".");
+        money = 0;
         printCoffeeMachineState();
     }
 }
