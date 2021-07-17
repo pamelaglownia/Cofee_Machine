@@ -4,6 +4,16 @@ import java.util.Scanner;
 
 public class MainMenu {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int water = 400;
+        int milk = 540;
+        int coffeeBeans = 120;
+        int cups = 9;
+        int money = 550;
+        printCoffeeMachineState(water, coffeeBeans, money, cups, milk);
+
+        System.out.println();
+        System.out.println("**********");
         System.out.println("Starting to make a coffee");
         System.out.println("Grinding coffee beans");
         System.out.println("Boiling water");
@@ -11,10 +21,15 @@ public class MainMenu {
         System.out.println("Pouring coffee into the cup");
         System.out.println("Pouring some milk into the cup");
         System.out.println("Coffee is ready!");
+    }
 
-        Scanner scan = new Scanner(System.in);
-        calculateIngredients(scan);
-        checkIfIsRequiredAmountOfIngredients(scan);
+    static void printCoffeeMachineState(int water, int coffeeBeans, int money, int cups, int milk) {
+        System.out.println("The coffee machine has:");
+        System.out.println(water + " ml of water");
+        System.out.println(milk + " ml of milk");
+        System.out.println(coffeeBeans + " g of coffee beans");
+        System.out.println(cups + " disposable cups");
+        System.out.println("$" + money + " of money");
     }
 
     static void calculateIngredients(Scanner scan) {
@@ -67,7 +82,6 @@ public class MainMenu {
             }
         } else {
             System.out.println("No, I can make only 0 cup(s) of coffee");
-
         }
     }
 }
