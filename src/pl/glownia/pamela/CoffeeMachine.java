@@ -82,7 +82,7 @@ public class CoffeeMachine {
                 decision = scan.next();
             }
             if (decision.equalsIgnoreCase(Actions.BUY.name())) {
-                System.out.println("Type which kind of coffee you would like to buy: espresso, latte cappuccino or return (to the main menu)?");
+                System.out.println("Type what kind of coffee would you like to buy: espresso, latte, cappuccino or return (to the main menu)?");
                 String coffeeChoice = scan.next();
                 if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.ESPRESSO.name())) {
                     Order orderEspresso = new Order();
@@ -94,7 +94,7 @@ public class CoffeeMachine {
                     Order orderCappuccino = new Order();
                     orderCappuccino.makeCoffee(this, KindOfCoffee.CAPPUCCINO);
                 } else if (coffeeChoice.equalsIgnoreCase("return")) {
-                    System.out.println("Returning to main menu.");
+                    System.out.println("...Returning to main menu.");
                 } else {
                     System.out.println("Wrong value. \n...Returning to main menu.");
                 }
@@ -102,9 +102,10 @@ public class CoffeeMachine {
                 RefillingIngredients filling = new RefillingIngredients();
                 filling.fillCoffeeMachine(this);
             } else if (decision.equalsIgnoreCase(Actions.TAKE.name())) {
-                System.out.println("Taking money.....");
+                System.out.println("I take $" + money + " from the coffee machine.");
+                setMoney(0);
             } else if (decision.equalsIgnoreCase(Actions.REMAINING.name())) {
-                System.out.println("Remaining ingredients.....");
+                printCoffeeMachineState();
             }
         } while (!(decision.equalsIgnoreCase(Actions.EXIT.name())));
         System.out.println("Thank you! Bye!");

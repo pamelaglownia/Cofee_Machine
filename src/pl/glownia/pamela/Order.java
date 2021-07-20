@@ -26,7 +26,7 @@ public class Order {
             coffeeMachine.setWater(coffeeMachine.getWater() - coffee.getWater());
             coffeeMachine.setMilk(coffeeMachine.getMilk() - coffee.getMilk());
             coffeeMachine.setCoffeeBeans(coffeeMachine.getCoffeeBeans() - coffee.getCoffeeBeans());
-            coffeeMachine.setMoney(coffeeMachine.getMoney() - coffee.getMoney());
+            coffeeMachine.setMoney(coffeeMachine.getMoney() + coffee.getMoney());
             coffeeMachine.setMilk(coffeeMachine.getMilk() - coffee.getMilk());
             coffeeMachine.setCups(coffeeMachine.getCups() - 1);
         }
