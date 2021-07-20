@@ -1,21 +1,11 @@
 package pl.glownia.pamela;
 
-import java.util.Scanner;
-
 public class CoffeeMachine {
-    private int water;
-    private int milk;
-    private int coffeeBeans;
-    private int cups;
-    private int money;
-
-    public CoffeeMachine() {
-        this.water = 400;
-        this.milk = 540;
-        this.coffeeBeans = 120;
-        this.cups = 9;
-        this.money = 550;
-    }
+    private int water = 400;
+    private int milk = 540;
+    private int coffeeBeans = 120;
+    private int cups = 9;
+    private int money = 550;
 
     public int getWater() {
         return water;
@@ -57,11 +47,6 @@ public class CoffeeMachine {
         this.money = money;
     }
 
-    void run(){
-        Scanner scan = new Scanner(System.in);
-        printCoffeeMachineState();
-        makeDecision(scan);
-    }
     void printCoffeeMachineState() {
         System.out.println("The coffee machine has:");
         System.out.println(water + " ml of water");
@@ -69,41 +54,5 @@ public class CoffeeMachine {
         System.out.println(coffeeBeans + " g of coffee beans");
         System.out.println(cups + " disposable cups");
         System.out.println("$" + money + " of money");
-    }
-
-    void makeDecision(Scanner scan) {
-        String decision;
-        do {
-            System.out.println("\nWrite action(buy, fill, take, remaining, exit): ");
-            decision = scan.next();
-            while (!(decision.equalsIgnoreCase(Actions.BUY.name()) || (decision.equalsIgnoreCase(Actions.FILL.name())) || (decision.equalsIgnoreCase(Actions.REMAINING.name())) || (decision.equalsIgnoreCase(Actions.TAKE.name())) || (decision.equalsIgnoreCase(Actions.EXIT.name())))) {
-                System.out.println("Incorrect value. Try again:");
-                decision = scan.next();
-            }
-            if (decision.equalsIgnoreCase(Actions.BUY.name())) {
-                System.out.println("Type which kind of coffee you would like to buy: espresso, latte or cappuccino?");
-                String coffeeNumber = scan.next();
-                if (coffeeNumber.equalsIgnoreCase(KindOfCoffee.ESPRESSO.name())) {
-                    Order orderEspresso = new Order();
-                    orderEspresso.makeCoffee(this, KindOfCoffee.ESPRESSO);
-                } else if (coffeeNumber.equalsIgnoreCase(KindOfCoffee.LATTE.name())) {
-                    Order orderLatte = new Order();
-                    orderLatte.makeCoffee(this, KindOfCoffee.LATTE);
-                } else if (coffeeNumber.equalsIgnoreCase(KindOfCoffee.CAPPUCCINO.name())) {
-                    Order orderCappuccino = new Order();
-                    orderCappuccino.makeCoffee(this, KindOfCoffee.CAPPUCCINO);
-                }
-                else {
-                    System.out.println("Wrong number.");
-                }
-            } else if (decision.equalsIgnoreCase(Actions.FILL.name())) {
-                System.out.println("Filling....");
-            } else if (decision.equalsIgnoreCase(Actions.TAKE.name())) {
-                System.out.println("Taking money.....");
-            } else if (decision.equalsIgnoreCase(Actions.REMAINING.name())) {
-                System.out.println("Remaining ingredients.....");
-            }
-        } while (!(decision.equalsIgnoreCase(Actions.EXIT.name())));
-        System.out.println("Thank you! Bye!");
     }
 }
