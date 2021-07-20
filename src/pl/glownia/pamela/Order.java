@@ -1,11 +1,6 @@
 package pl.glownia.pamela;
 
 public class Order {
-    private CoffeeMachine coffeeMachine;
-
-    public Order(CoffeeMachine coffeeMachine) {
-        this.coffeeMachine = coffeeMachine;
-    }
 
     boolean verifyRequiredIngredients(CoffeeMachine coffeeMachine, KindOfCoffee coffee) {
         if (coffeeMachine.getWater() < coffee.getWater()) {
