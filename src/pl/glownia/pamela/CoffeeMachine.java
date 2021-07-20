@@ -57,11 +57,12 @@ public class CoffeeMachine {
         this.money = money;
     }
 
-    void run(){
+    void run() {
         Scanner scan = new Scanner(System.in);
         printCoffeeMachineState();
         makeDecision(scan);
     }
+
     void printCoffeeMachineState() {
         System.out.println("The coffee machine has:");
         System.out.println(water + " ml of water");
@@ -92,14 +93,14 @@ public class CoffeeMachine {
                 } else if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.CAPPUCCINO.name())) {
                     Order orderCappuccino = new Order();
                     orderCappuccino.makeCoffee(this, KindOfCoffee.CAPPUCCINO);
-                }else if(coffeeChoice.equalsIgnoreCase("return")){
+                } else if (coffeeChoice.equalsIgnoreCase("return")) {
                     System.out.println("Returning to main menu.");
-                }
-                else {
+                } else {
                     System.out.println("Wrong value. \n...Returning to main menu.");
                 }
             } else if (decision.equalsIgnoreCase(Actions.FILL.name())) {
-                System.out.println("Filling....");
+                RefillingIngredients filling = new RefillingIngredients();
+                filling.fillCoffeeMachine(this);
             } else if (decision.equalsIgnoreCase(Actions.TAKE.name())) {
                 System.out.println("Taking money.....");
             } else if (decision.equalsIgnoreCase(Actions.REMAINING.name())) {
