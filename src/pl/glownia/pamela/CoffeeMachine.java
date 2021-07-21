@@ -82,22 +82,8 @@ public class CoffeeMachine {
                 decision = scan.next();
             }
             if (decision.equalsIgnoreCase(Actions.BUY.name())) {
-                System.out.println("Type what kind of coffee would you like to buy: espresso, latte, cappuccino or return (to the main menu)?");
-                String coffeeChoice = scan.next();
-                if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.ESPRESSO.name())) {
-                    Order orderEspresso = new Order();
-                    orderEspresso.makeCoffee(this, KindOfCoffee.ESPRESSO);
-                } else if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.LATTE.name())) {
-                    Order orderLatte = new Order();
-                    orderLatte.makeCoffee(this, KindOfCoffee.LATTE);
-                } else if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.CAPPUCCINO.name())) {
-                    Order orderCappuccino = new Order();
-                    orderCappuccino.makeCoffee(this, KindOfCoffee.CAPPUCCINO);
-                } else if (coffeeChoice.equalsIgnoreCase("return")) {
-                    System.out.println("...Returning to main menu.");
-                } else {
-                    System.out.println("Wrong value. \n...Returning to main menu.");
-                }
+                Order order = new Order();
+                order.chooseCoffee(this);
             } else if (decision.equalsIgnoreCase(Actions.FILL.name())) {
                 RefillingIngredients filling = new RefillingIngredients();
                 filling.fillCoffeeMachine(this);

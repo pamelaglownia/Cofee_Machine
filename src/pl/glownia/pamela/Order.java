@@ -1,5 +1,7 @@
 package pl.glownia.pamela;
 
+import java.util.Scanner;
+
 public class Order {
 
     boolean verifyRequiredIngredients(CoffeeMachine coffeeMachine, KindOfCoffee coffee) {
@@ -18,6 +20,23 @@ public class Order {
         } else {
             System.out.println("I have enough resources, making you a coffee!");
             return true;
+        }
+    }
+
+    void chooseCoffee(CoffeeMachine coffeeMachine) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Type what kind of coffee would you like to buy: espresso, latte, cappuccino or return (to the main menu)?");
+        String coffeeChoice = scan.next();
+        if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.ESPRESSO.name())) {
+            makeCoffee(coffeeMachine, KindOfCoffee.ESPRESSO);
+        } else if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.LATTE.name())) {
+            makeCoffee(coffeeMachine, KindOfCoffee.LATTE);
+        } else if (coffeeChoice.equalsIgnoreCase(KindOfCoffee.CAPPUCCINO.name())) {
+            makeCoffee(coffeeMachine, KindOfCoffee.CAPPUCCINO);
+        } else if (coffeeChoice.equalsIgnoreCase("return")) {
+            System.out.println("...Returning to main menu.");
+        } else {
+            System.out.println("Wrong value. \n...Returning to main menu.");
         }
     }
 
