@@ -75,25 +75,26 @@ public class CoffeeMachine {
     void makeDecision(Scanner scan) {
         String decision;
         do {
-            System.out.println("\nWrite action(buy, fill, take, remaining, exit): ");
+            System.out.println("\nWrite action(buy, fill, take, check_status, exit): ");
             decision = scan.next();
-            while (!(decision.equalsIgnoreCase(Actions.BUY.name()) || (decision.equalsIgnoreCase(Actions.FILL.name())) || (decision.equalsIgnoreCase(Actions.REMAINING.name())) || (decision.equalsIgnoreCase(Actions.TAKE.name())) || (decision.equalsIgnoreCase(Actions.EXIT.name())))) {
+            while (!((Actions.BUY.equals(decision)) || (Actions.FILL.equals(decision) || (Actions.CHECK_STATUS.equals(decision)) || (Actions.TAKE.equals(decision)) || (Actions.EXIT.equals(decision))))) {
                 System.out.println("Incorrect value. Try again:");
                 decision = scan.next();
             }
-            if (decision.equalsIgnoreCase(Actions.BUY.name())) {
+            if (Actions.BUY.equals(decision)) {
                 Order order = new Order();
                 order.chooseCoffee(this);
-            } else if (decision.equalsIgnoreCase(Actions.FILL.name())) {
+            } else if (Actions.FILL.equals(decision)) {
                 RefillingIngredients filling = new RefillingIngredients();
                 filling.fillCoffeeMachine(this);
-            } else if (decision.equalsIgnoreCase(Actions.TAKE.name())) {
+            } else if (Actions.TAKE.equals(decision)) {
                 System.out.println("I take $" + money + " from the coffee machine.");
                 setMoney(0);
-            } else if (decision.equalsIgnoreCase(Actions.REMAINING.name())) {
+            } else if (Actions.CHECK_STATUS.equals(decision)) {
                 printCoffeeMachineState();
             }
-        } while (!(decision.equalsIgnoreCase(Actions.EXIT.name())));
+        }
+        while (!(Actions.EXIT.equals(decision)));
         System.out.println("Thank you! Bye!");
     }
 }
